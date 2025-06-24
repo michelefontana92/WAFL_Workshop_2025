@@ -30,7 +30,7 @@ git clone https://anonymous.4open.science/r/WAFL_Workshop_2025-8255/
 
 ### **4. Navigate to the project directory**
 ```bash
-cd ECMLPKDD2025-016B
+cd WAFL_Workshop_2025
 ```
 
 ### **5. Install dependencies**
