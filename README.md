@@ -15,12 +15,12 @@ We recommend setting up a new Conda environment with **Python >= 3.9**.
 
 ### **1. Create a Conda environment**
 ```bash
-conda create -n "fairlab" python==3.9
+conda create -n "fedist" python==3.9
 ```
 
 ### **2. Activate the environment**
 ```bash
-conda activate fairlab
+conda activate fedist
 ```
 
 ### **3. Clone the repository**
@@ -55,7 +55,7 @@ Regarding training, we train the neural network for a maximum of $100$ global it
 
 ## **Usage**
 
-To run an experiment with `FairLab`:
+To run an experiment with `FeDist`:
 
 ### **1. Navigate to the `src` directory**
 ```bash
@@ -79,7 +79,7 @@ Options:
 ```
 
 #### **Predefined Runs (`runs` folder)**
-- **`folk_fairlab`** → Uses the **Income** dataset.
-- **`insurance_fairlab`** → Uses the **Insurance** dataset.
-- **`employment_fairlab`** → Uses the **Employment** dataset.
-- **`meps_fairlab`** → Uses the **MEPS** dataset.
+- **`folk_fedist`** → Uses the **Income** dataset.
+- **`insurance_fedist`** → Uses the **Insurance** dataset.
+- **`employment_fedist`** → Uses the **Employment** dataset.
+- **`meps_fedist`** → Uses the **MEPS** dataset.

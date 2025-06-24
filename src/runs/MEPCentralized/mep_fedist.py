@@ -3,7 +3,7 @@ from .mep_run import CentralizedMEPRun
 from ..run_factory import register_run
 from builder import FedFairLabBuilder
 
-@register_run('mep_fedfairlab')
+@register_run('mep_fedist')
 class MEPHierALMCentralized(CentralizedMEPRun):
     def __init__(self, **kwargs) -> None:
         super(MEPHierALMCentralized, self).__init__(**kwargs)

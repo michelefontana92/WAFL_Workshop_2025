@@ -14,7 +14,7 @@ import torch
 from builder import FedFairLabBuilder
 import wandb
 
-@register_run('insurance_fedfairlab')
+@register_run('insurance_fedist')
 class InsuranceHierALMCentralized(InsuranceRun):
     def __init__(self, **kwargs) -> None:
         super(InsuranceHierALMCentralized, self).__init__(**kwargs)
