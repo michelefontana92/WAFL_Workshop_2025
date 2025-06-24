@@ -1,21 +1,18 @@
 # FeDist
 
-FeDist is a new FL method that
-exploits the knowledge distillation paradigm. In practice, clients share only their
-logits outputs and the server aggregates this information to update the global model. This design makes no assumptions about the network architecture, hence
-each client can use the network best suited to its environment, and is optimized for non-IID data distributions, ensuring stable and robust convergence.
-A preliminary empirical evaluation of FeDist on four real-world datasets with different data distributions, show that our paradigm achieves good prediction
-performance, always on par or better than the standard FedAvg approach.
+**FeDist** is a novel Federated Learning (FL) method based on the knowledge distillation paradigm. Clients share only their **logit outputs**, which the server aggregates to update the global model. This design is **architecture-agnostic**, allowing each client to use the network best suited to its environment. FeDist is optimized for **non-IID data distributions**, ensuring stable and robust convergence.
+
+A preliminary empirical evaluation on four real-world datasets with varying data distributions demonstrates that **FeDist consistently achieves strong predictive performance**, matching or outperforming the standard **FedAvg** approach.
 
 ---
 
 ## **Installation**
 
-We recommend setting up a new Conda environment with **Python >= 3.9**.
+We recommend setting up a new Conda environment with **Python ≥ 3.9**.
 
 ### **1. Create a Conda environment**
 ```bash
-conda create -n "fedist" python==3.9
+conda create -n "fedist" python=3.9
 ```
 
 ### **2. Activate the environment**
@@ -41,45 +38,60 @@ pip install -r requirements.txt
 ---
 
 ## **Experimental Setting**
-In this section, we provide details about the experimental setting.
 
-### **Neural Networks**
+### **Neural Network Architecture**
 
-Across all datasets, we train a feedforward neural network with two hidden layers containing $300$ and $100$ neurons, respectively, and ReLU activations. A Dropout layer with a rate of $0.2$ is applied after the last hidden layer for regularization, while the output layer uses the Softmax function.
+For all datasets, we use a **feedforward neural network** with:
 
-### **Hyper-parameters**
+- Two hidden layers of **300** and **100** neurons
+- **ReLU** activations
+- A **Dropout** layer (rate = 0.2) after the last hidden layer for regularization
+- A final **Softmax** output layer
 
-Regarding training, we train the neural network for a maximum of $100$ global iterations at the server level and up to $5$ epochs per client. Early stopping is applied with a patience of $5$ epochs at the server level, based on the global $F_1$ score. At the client level, we employ the Adam optimizer with a learning rate of $1e^{-4}$, a weight decay factor of $1e^{-4}$, and a batch size of $128$. The loss function is the Cross-Entropy. We execute at most $5$ FedAvg epochs in the aggregation phase, with an early stopping condition (patience = 2).
+### **Hyperparameters**
+
+- **Global training**: Up to **100 global iterations**
+- **Client-side training**: Up to **5 epochs per round**
+- **Early stopping** at the server (patience = 5), based on the global **F₁ score**
+- **Optimizer**: Adam
+- **Learning rate**: `1e-4`
+- **Weight decay**: `1e-4`
+- **Batch size**: 128
+- **Loss function**: Cross-Entropy
+- **Aggregation phase**: Up to 5 **FedAvg** steps, with early stopping (patience = 2)
 
 ---
 
 ## **Usage**
 
-To run an experiment with `FeDist`:
+To run an experiment with **FeDist**:
 
 ### **1. Navigate to the `src` directory**
 ```bash
 cd src
 ```
 
-### **2. Execute `main.py` with options**
+### **2. Run `main.py` with the desired options**
 ```bash
 python main.py --options
 ```
 
-### **Available Options**
+### **Available Command-Line Options**
 ```bash
 Options:
-  -r, --run TEXT                  Name of the run to execute
-  -p, --project_name TEXT         Name of the WandB project
-  -nl --num_local_iterations default=30,  Number of local epochs
-  -nf --num_federated_iterations default=100,  Number of global epochs
-  -nc --num_clients default=10,     Number of clients
-  -e ---experiment_name  default='New'   Name of the experiment, folder containing the data
+  -r, --run TEXT                      Name of the run to execute
+  -p, --project_name TEXT             Name of the WandB project
+  -nl, --num_local_iterations INT     Number of local training epochs (default: 30)
+  -nf, --num_federated_iterations INT Number of global training epochs (default: 100)
+  -nc, --num_clients INT              Number of clients (default: 10)
+  -e, --experiment_name TEXT          Name of the experiment (default: 'New')
 ```
 
-#### **Predefined Runs (`runs` folder)**
-- **`folk_fedist`** → Uses the **Income** dataset.
-- **`insurance_fedist`** → Uses the **Insurance** dataset.
-- **`employment_fedist`** → Uses the **Employment** dataset.
-- **`meps_fedist`** → Uses the **MEPS** dataset.
+### **Predefined Runs (`runs` folder)**
+
+- **`folk_fedist`** → Uses the **Income** dataset  
+- **`insurance_fedist`** → Uses the **Insurance** dataset  
+- **`employment_fedist`** → Uses the **Employment** dataset  
+- **`meps_fedist`** → Uses the **MEPS** dataset  
+
+---
